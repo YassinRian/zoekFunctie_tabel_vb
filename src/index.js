@@ -35,7 +35,8 @@ $(document).ready(function() {
   //         });
   //     }
   //   });
-  var index_ = [];
+  var index_td = [];
+  var index_tr = [];
   $(".xt.yassin_tabel tr")
     .slice(10)
     .each(function(index) {
@@ -47,11 +48,20 @@ $(document).ready(function() {
               .find("span")
               .text() === "Lasten Budget"
           )
-            console.log(
+            // console.log(idex);
+            // console.log(
+            //   $(this)
+            //     .parent()
+            //     .index()
+            // );
+            // index_td.push(idex);
+            index_tr.push(
               $(this)
                 .parent()
                 .index()
             );
         });
     });
+  console.log(index_td);
+  console.log(index_tr);
 });
