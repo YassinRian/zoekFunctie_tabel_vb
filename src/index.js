@@ -1,5 +1,3 @@
-import $ from "jquery";
-
 $(document).ready(function() {
   //   $("#search").keyup(function() {
   //     var value = this.value;
@@ -37,17 +35,9 @@ $(document).ready(function() {
   //   });
   var index_td = [];
   var index_tr = [];
-  $(".xt.yassin_tabel tr")
-    .slice(10)
-    .each(function(index) {
-      $(this)
-        .find("td")
-        .each(function(idex) {
-          if (
-            $(this)
-              .find("span")
-              .text() === "Lasten Budget"
-          )
+  $(".xt.yassin_tabel tr").slice(10).each(function(index) {
+      $(this).find("td").each(function(idex) {
+          if ($(this).find("span").text() === "Lasten Budget")
             // console.log(idex);
             // console.log(
             //   $(this)
@@ -55,13 +45,16 @@ $(document).ready(function() {
             //     .index()
             // );
             // index_td.push(idex);
-            index_tr.push(
-              $(this)
-                .parent()
-                .index()
-            );
+            // index_tr.push(
+            //   $(this)
+            //     .parent()
+            //     .index()
+            // );
+
+            $(this).parent().slice(0,idex).each(function () {  
+              var test = $(this).find("td").slice(0, idex).find("span").text();
+              console.log(test)
+            })
         });
     });
-  console.log(index_td);
-  console.log(index_tr);
 });
