@@ -1,60 +1,19 @@
 $(document).ready(function() {
-  //   $("#search").keyup(function() {
-  //     var value = this.value;
-  //     // $(".xt.yassin_tabel tr").slice(5).each(function(index) {
-  //     //     if (index === 0) return;
-  //     //     var id = $(this).find("td").slice(0,2).text();
-  //     //     $(this).toggle(id.indexOf(value) !== -1);
-  //     // });
-  // //     $(".xt.yassin_tabel tr")
-  // //       .slice(6).each(function() {
-  // //         var zoekwaarde = $(this).find("td").each(function () {
-  // //           })
-  // //           .slice(0)
-  // //           .find("span")
-  // //           .text();
-  // //         console.log(zoekwaarde);
-  // //       });
-  // //   });
+var index_tr = [];
+  $("#search").keyup(function () {
+  var var_input = $.trim($("#search").val().replace(/\s+/g, '').toUpperCase());
 
-  // $(".xt.yassin_tabel tr")
-  //   .slice(10)
-  //   .each(function(index) {
-  //     if (index === 0) {
-  //       $(this)
-  //         .find("td")
-  //         .each(function(index) {
-  //           if (index === 0) {
-  //             var bla = $(this)
-  //               .find("span")
-  //               .text();
-  //             console.log(bla);
-  //           }
-  //         });
-  //     }
-  //   });
-  var index_td = [];
-  var index_tr = [];
   $(".xt.yassin_tabel tr").slice(10).each(function(index) {
       $(this).find("td").each(function(idex) {
           if ($(this).find("span").text() === "Lasten Budget")
-            // console.log(idex);
-            // console.log(
-            //   $(this)
-            //     .parent()
-            //     .index()
-            // );
-            // index_td.push(idex);
-            // index_tr.push(
-            //   $(this)
-            //     .parent()
-            //     .index()
-            // );
-
-            $(this).parent().slice(0,idex).each(function () {  
-              var test = $(this).find("td").slice(0, idex).find("span").text();
-              console.log(test)
-            })
+             $(this).parent().slice(0,idex).each(function (index) {
+               var index_ = '';
+               index_ = $(this).index();
+               var test = $(this).find("td").slice(0, idex).find("span").text().replace(/\u00A0/g, '').toUpperCase();
+               if (test.indexOf(var_input) > -1 )
+                $(this).parent().find("tr").not(".tableRow").slice(index_, index_ + 3).hide();
+            });
         });
     });
+  });
 });
